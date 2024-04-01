@@ -64,7 +64,6 @@ class HwManager(QObject):
             value (float | int, optional): The value to write.
                 Defaults to 0.
         """
-        # logger.debug(f"writeSpeed({hwId}, {channelId}, {value})")
         if hwId in self.hardwareDevices \
                 and channelId in self.hardwareDevices[hwId].pinStates:
             self.hardwareDevices[hwId].pinStates[channelId] = value
@@ -160,8 +159,8 @@ class HwManager(QObject):
         """
         # Check if device already exists and return if it does so
         if (id := self._checkDeviceExistance(msg.mac)) is not None:
-            logger.debug(f"Device with mac {msg.mac} already exists in config "
-                         f"as id {id} . Not creating a new one.")
+            logger.debug(f"Device with {msg.mac=} already exists in config "
+                         f"as {id=} . Not creating a new one.")
             self.hardwareDevices[id].wasDiscovered = True
             return
         # If not this means it's a brand new device, create from scratch
@@ -310,11 +309,10 @@ class HwOscRxWorker(QObject):
         self.dispatcher.set_default_handler(self._defaultHandler)
 
     def _defaultHandler(self, topic: str, *args) -> None:
-        logger.debug(f"Unknown osc message: {topic}, {str(args)}")
+        logger.debug(f"Unknown osc message: {topic=}, {str(args)=}")
 
     def _handleDiscoveryResponseMessage(self, client: tuple,
                                         topic: str, *args) -> None:
-        # logger.debug(f"_handleDiscoveryResponseMessage: {str(client)}, {topic}, {str(args)}")
         if DiscoveryResponseMessage.isType(topic, args):
             msg = DiscoveryResponseMessage(
                 *args, sourceType=HardwareConnectionType.OSC, sourceAddr=client[0])
@@ -323,7 +321,6 @@ class HwOscRxWorker(QObject):
 
     def _handleHeartbeatMessage(self, client: tuple,
                                 topic: str, *args) -> None:
-        # logger.debug(f"_handleHeartbeatMessage: {str(client)}, {topic}, {str(args)}")
         if HeartbeatMessage.isType(topic, args):
             msg = HeartbeatMessage(*args, sourceAddr=client[0])
             # logger.debug(msg)
@@ -350,8 +347,8 @@ class HwOscRxWorker(QObject):
 
         logger.debug(f"closeOscServer in {__class__.__name__}")
         selfThread = self.thread()
-        logger.debug(f"pid_QThread.currentThread={threadAsStr(QThread.currentThread())} "
-                     f"pid_selfThread={threadAsStr(selfThread)} ")
+        logger.debug(f"{threadAsStr(QThread.currentThread())=} "
+                     f"{threadAsStr(selfThread)=}")
         if hasattr(self, "_oscRx"):
             self._oscRx.shutdown()
         if selfThread:

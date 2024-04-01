@@ -355,11 +355,9 @@ class ExpandedWidgetDataRowBase(QHBoxLayout):
         raise NotImplementedError
 
     def _lockSlider(self) -> None:
-        logger.debug("Slider locked")
         self.sliderLocked = True
 
     def _unlockSlider(self) -> None:
-        logger.debug("Slider unlocked")
         self.sliderLocked = False
 
 

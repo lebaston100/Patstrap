@@ -150,7 +150,6 @@ class ContactGroupManager(QObject):
             self.registerAvatarPoint.emit(avatarPoint.receiverId)
             self._avatarPoints[avatarPoint.receiverId] = []
         self._avatarPoints[avatarPoint.receiverId].append(avatarPoint)
-        # logger.debug(self._avatarPoints)
 
     def avatarPointRemoved(self, avatarPoint: AvatarPointSphere) -> None:
         """Removes a receiver id from the LUT and unregisters it from
@@ -166,7 +165,6 @@ class ContactGroupManager(QObject):
             if not len(self._avatarPoints[avatarPoint.receiverId]):
                 self.unregisterAvatarPoint.emit(avatarPoint.receiverId)
                 self._avatarPoints.pop(avatarPoint.receiverId)
-        # logger.debug(self._avatarPoints)
 
     @QSlot(float, str, list)
     def onVrcContact(self, ts: float, addr: str, params: list) -> None:

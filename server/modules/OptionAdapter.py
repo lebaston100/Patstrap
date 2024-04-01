@@ -134,7 +134,6 @@ class OptionAdapter():
         for path, (uiElem, dataType) in self._uiElems.items():
             try:
                 newValue = dataType(config.get(f"{configKey}.{path}"))
-                # logger.debug(f"{configKey}.{path}: {str(newValue)}")
             except TypeError:
                 logger.error(f"Failed to read {configKey}.{path} from config")
             else:

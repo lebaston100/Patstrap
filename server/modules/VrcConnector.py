@@ -67,7 +67,7 @@ class VrcConnectionWorker(QObject):
             f"startOsc pid     ={threadAsStr(QThread.currentThread())}")
         logger.debug(
             f"startOsc pid_self={threadAsStr(self.thread())}")
-        logger.debug(f"Starting osc server on port {str(self._oscRxPort)}")
+        logger.debug(f"Starting osc server on {self._oscRxPort=}")
         try:
             self._oscRx = BlockingOSCUDPServer(
                 ("", self._oscRxPort), self.dispatcher)
@@ -85,8 +85,8 @@ class VrcConnectionWorker(QObject):
         thread but instead the thread's manager running in the main thread"""
         logger.debug(f"closeOscServer in {__class__.__name__}")
         selfThread = self.thread()
-        logger.debug(f"pid_QThread.currentThread={threadAsStr(QThread.currentThread())} "
-                     f"pid_selfThread={threadAsStr(selfThread)} ")
+        logger.debug(f"{threadAsStr(QThread.currentThread())=} "
+                     f"{threadAsStr(selfThread)=}")
         if hasattr(self, "_oscRx"):
             self._oscRx.shutdown()
         if selfThread:
@@ -198,6 +198,7 @@ A drop-in replacement of the original osc dispatcher modified
 to have less overhead to faster handle the data coming from vrc
 """
 
+
 class VrcOscDispatcher(Dispatcher):
     """A custom dispatcher for OSC messages.
 
@@ -239,9 +240,9 @@ class VrcOscDispatcher(Dispatcher):
                         and msg.message.address[19:] in self.matchTopics:
                     # pid = threadAsStr(QThread.currentThread())
                     # logger.debug(
-                    # f"pid={pid} incoming osc: "
-                    # f"addr={msg.message.address} "
-                    # f"msg={str(msg.message.params)}"
+                    # f"{pid=} incoming osc: "
+                    # f"{msg.message.address=} "
+                    # f"{str(msg.message.params)=}"
                     # )
                     self._connector.onVrcContact.emit(
                         time(),

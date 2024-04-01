@@ -99,7 +99,6 @@ class ProgramSettingsDialog(QWidget, OptionAdapter):
         self.selfLayout.addRow(self.bt_saveCancelButtons)
 
     def handleSaveButton(self) -> None:
-        logger.debug("Save button pressed")
         self.saveOptsFromGui(config, self._configKey)
         self.close()
 

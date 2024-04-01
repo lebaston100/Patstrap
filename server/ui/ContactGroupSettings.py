@@ -621,8 +621,8 @@ class SettingsTableModel(QAbstractTableModel):
                 False otherwise.
         """
         if role in (Qt.ItemDataRole.DisplayRole, Qt.ItemDataRole.EditRole):
-            logger.debug(f"EditRole: {role} Row: {index.row()} "
-                         f"Col: {index.column()} Value: {value}")
+            logger.debug(f"{role=} {index.row()=} "
+                         f"{index.column()=} {value=}")
             dataType = self._getDataTypeForCol(index)
             # Don't allow empty values
             if value == "":

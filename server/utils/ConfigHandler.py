@@ -57,7 +57,6 @@ class FileHelper(IConfigHandler):
         Returns:
             bool: True if the write was sucessful.
         """
-        # logger.debug("writing data to json file")
         try:
             with open(self._tempfile, mode="w") as f:
                 json.dump(data, f, indent=4)
@@ -79,7 +78,6 @@ class FileHelper(IConfigHandler):
         Returns:
             dict: The data that was read from the file.
         """
-        logger.debug("reading from json file")
         try:
             with open(self._file, mode="r") as f:
                 return json.load(f)
