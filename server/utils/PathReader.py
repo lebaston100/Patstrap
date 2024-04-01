@@ -2,6 +2,9 @@
 This module provides the PathReader class for reading and modifying
 nested dictionaries.
 
+Edit: I just found out there's a thing called json pointers and it seems
+i've built my own basic implementation of the concept, lol.
+
 The PathReader class provides static methods to get, set, and delete
 options in a nested dictionary. The path to the option is specified in
 dot notation.
