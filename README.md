@@ -10,7 +10,9 @@
 
 An open hardware and software project which tries to implement spatial haptic head pat (but also more generic) feedback to the player in VRchat.
 
-## This project is actively work in progress
+## This project is work in progress
+
+## Development is temporarily  on hold and will continue in July!
 
 ### Development TODO list
 
