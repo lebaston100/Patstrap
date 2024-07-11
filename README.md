@@ -12,8 +12,6 @@ An open hardware and software project which tries to implement spatial haptic he
 
 ## This project is work in progress
 
-## Development is temporarily  on hold and will continue in July!
-
 ### Development TODO list
 
 Server:
