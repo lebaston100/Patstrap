@@ -1,6 +1,12 @@
 import logging
 import sys
 
+# this could be another workaround for the numpy console issue
+# import os
+# if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+#    sys.stdout = open(os.devnull, 'w')
+#    sys.stderr = open(os.devnull, 'w')
+
 from PyQt6.QtWidgets import QApplication
 
 from modules.GlobalConfig import GlobalConfigSingleton
