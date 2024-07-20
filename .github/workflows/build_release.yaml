@@ -1,0 +1,36 @@
+name: "release"
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Create Executable
+        uses: sayyid5416/pyinstaller@v1
+        with:
+          python_ver: '3.12'
+          spec: 'server/vrc-patpatpat.spec'
+          requirements: 'server/requirements.txt'
+          upload_exe_with_name: 'vrc-patpatpat'
+      - name: Zip Release
+        uses: TheDoctor0/zip-release@0.7.6
+        with:
+          type: 'zip'
+          filename: 'vrc-patpatpat.zip'
+          path: ./dist
+      - name: tree
+        run: |
+          tree
+          dir
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: 'vrc-patpatpat.zip'
+          draft: true
+          body: "Automated release."
+          fail_on_unmatched_files: true
