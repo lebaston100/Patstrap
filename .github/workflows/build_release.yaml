@@ -1,5 +1,8 @@
 name: "release"
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   push:
@@ -16,7 +19,6 @@ jobs:
           python_ver: '3.12'
           spec: 'server/vrc-patpatpat.spec'
           requirements: 'server/requirements.txt'
-          upload_exe_with_name: 'vrc-patpatpat'
       - name: Zip Release
         uses: TheDoctor0/zip-release@0.7.6
         with:
