@@ -24,6 +24,10 @@ jobs:
           spec: 'server/vrc-patpatpat.spec'
           requirements: 'server/requirements.txt'
           upload_exe_with_name: 'vrc-patpatpat'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xref-vrc-patpatpat.html
+          path: ./build/vrc-patpatpat/xref-vrc-patpatpat-debug.html
   build-windows-debug:
     runs-on: windows-latest
     steps:
@@ -34,3 +38,7 @@ jobs:
           spec: 'server/vrc-patpatpat-debug.spec'
           requirements: 'server/requirements.txt'
           upload_exe_with_name: 'vrc-patpatpat-debug'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xref-vrc-patpatpat-debug.html
+          path: ./build/vrc-patpatpat-debug/xref-vrc-patpatpat-debug.html
