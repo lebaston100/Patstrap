@@ -27,7 +27,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: xref-vrc-patpatpat.html
-          path: ./build/vrc-patpatpat/xref-vrc-patpatpat-debug.html
+          path: ./build/vrc-patpatpat/xref-vrc-patpatpat.html
   build-windows-debug:
     runs-on: windows-latest
     steps:
